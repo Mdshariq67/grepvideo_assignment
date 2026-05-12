@@ -12,10 +12,10 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   final List<String> _productImages = [
-    'images/cloth.png',
-    'images/cloth.png',
-    'images/cloth.png',
-    'images/cloth.png',
+    'assets/images/cloth.png',
+    'assets/images/cloth.png',
+    'assets/images/cloth.png',
+    'assets/images/cloth.png',
   ];
 
   int _currentPage = 0;
@@ -25,11 +25,13 @@ class _ProductDetailsState extends State<ProductDetails> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        backgroundColor: AppColors.white,
+        elevation: 0,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.arrow_back),
         ),
-        title: Image.asset('images/tags.png', width: 80, height: 32),
+        title: Image.asset('assets/images/tags.png', width: 80, height: 32),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           12.kwidthbox,
@@ -335,7 +337,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           CircleAvatar(
                             radius: 24,
                             backgroundImage: const AssetImage(
-                              'images/user.jpg',
+                              'assets/images/user.jpg',
                             ),
                           ),
                           6.kwidthbox,
@@ -403,7 +405,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           '1k',
                           AppColors.neutral600,
                         ),
-                        reaction(Icons.favorite, '42k', AppColors.red),
+                        reaction(Icons.refresh, '42k', AppColors.neutral600),
                       ],
                     ),
                   ),
@@ -444,33 +446,36 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ),
                         ],
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.neutral900,
-                          padding: EdgeInsets.all(16),
-                          minimumSize: Size(251, 38),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.shopping_cart_outlined,
-                              color: AppColors.white,
+                      32.kwidthbox,
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.neutral900,
+                            padding: EdgeInsets.all(16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100),
                             ),
-                            4.kwidthbox,
-                            Text(
-                              'Add to Cart',
-                              style: AppTextStyles.openSans(
-                                fontSize: 14,
-                                height: 1.5,
-                                fontWeight: FontWeight.w600,
+                          ),
+                          onPressed: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.shopping_cart_outlined,
                                 color: AppColors.white,
                               ),
-                            ),
-                          ],
+                              4.kwidthbox,
+                              Text(
+                                'Add to Cart',
+                                style: AppTextStyles.openSans(
+                                  fontSize: 14,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -590,15 +595,208 @@ class _ProductDetailsState extends State<ProductDetails> {
                             ),
                           ],
                         ),
+                        8.kheightbox,
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.credit_card,
+                              size: 14,
+                              color: AppColors.neutral500,
+                            ),
+                            4.kwidthbox,
+                            Text(
+                              'Cash on Delivery available',
+                              style: AppTextStyles.openSans(
+                                fontSize: 12,
+                                height: 1.5,
+                                color: AppColors.neutral800,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
+                  16.kheightbox,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      productCheck(
+                        'assets/images/box.png',
+                        '7 Day\n Return & \nExchange',
+                      ),
+                      productCheck(
+                        'assets/images/return.png',
+                        'Pay on \nDelivery',
+                      ),
+                      productCheck(
+                        'assets/images/verify.png',
+                        'Quality \nChecked',
+                      ),
+                      productCheck(
+                        'assets/images/genuine.png',
+                        'Genuine \nProduct',
+                      ),
+                    ],
+                  ),
+                  16.kheightbox,
+                  productDetailsSection(),
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Column productCheck(String image, String text) {
+    return Column(
+      children: [
+        Container(
+          width: 32,
+          height: 32,
+          decoration: BoxDecoration(
+            color: AppColors.blue100,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Image.asset(image),
+        ),
+
+        8.kheightbox,
+        Text(
+          text,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.openSans(
+            fontSize: 12,
+
+            height: 1.5,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Container productDetailsSection() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.neutral200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Product Details',
+                style: AppTextStyles.openSans(
+                  fontSize: 16,
+                  height: 1.4,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.neutral800,
+                ),
+              ),
+              Icon(Icons.keyboard_arrow_up, color: AppColors.neutral600),
+            ],
+          ),
+          4.kheightbox,
+          Text(
+            "Explore product's standout features",
+            style: AppTextStyles.openSans(
+              fontSize: 12,
+              height: 1.5,
+              fontWeight: FontWeight.w400,
+              color: AppColors.neutral600,
+            ),
+          ),
+          12.kheightbox,
+          Divider(height: 1, thickness: 1, color: AppColors.neutral200),
+          12.kheightbox,
+          detailsTwoColumnRow(
+            leftTitle: 'Fabric',
+            leftValue: 'Viscose Rayon',
+            rightTitle: 'Closure',
+            rightValue: 'ZIP',
+          ),
+          10.kheightbox,
+          detailsTwoColumnRow(
+            leftTitle: 'Sleeve Length',
+            leftValue: '16 cm',
+            rightTitle: 'Washcare',
+            rightValue: 'Machine Wash',
+          ),
+          10.kheightbox,
+          detailsTwoColumnRow(leftTitle: 'Neck', leftValue: 'Pack Neck'),
+          10.kheightbox,
+          detailsSingleColumn(
+            title: 'Size & Fit',
+            value: "The model (height 5.8') is wearing a size M.",
+          ),
+          10.kheightbox,
+          detailsSingleColumn(
+            title: 'Material & Care',
+            value: '83% Viscose, 17% Polyamide',
+          ),
+          10.kheightbox,
+          detailsSingleColumn(title: 'Style Note', value: 'Beige'),
+        ],
+      ),
+    );
+  }
+
+  Row detailsTwoColumnRow({
+    required String leftTitle,
+    required String leftValue,
+    String? rightTitle,
+    String? rightValue,
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: detailsSingleColumn(title: leftTitle, value: leftValue),
+        ),
+        12.kwidthbox,
+        Expanded(
+          child: rightTitle != null && rightValue != null
+              ? detailsSingleColumn(title: rightTitle, value: rightValue)
+              : const SizedBox(),
+        ),
+      ],
+    );
+  }
+
+  Column detailsSingleColumn({required String title, required String value}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: AppTextStyles.openSans(
+            fontSize: 12,
+            height: 1.5,
+            fontWeight: FontWeight.w400,
+            color: AppColors.neutral800,
+          ),
+        ),
+
+        Text(
+          value,
+          style: AppTextStyles.openSans(
+            fontSize: 12,
+            height: 1.5,
+            fontWeight: FontWeight.w400,
+            color: AppColors.neutral500,
+          ),
+        ),
+      ],
     );
   }
 
@@ -633,7 +831,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         ),
       ),
       child: Image.asset(
-        'images/cloth.png',
+        'assets/images/cloth.png',
         width: 52,
         height: 42,
         fit: BoxFit.contain,
